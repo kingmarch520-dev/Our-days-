@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Our Days</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#EAF3DE">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<section id="screen-login" class="screen active">
+  <div class="login-card">
+    <div class="login-icon"><i>&#10084;</i></div>
+    <h1>Welcome back</h1>
+    <p class="muted">Who's writing today?</p>
+
+    <div class="profile-pick">
+      <button class="profile-btn me" id="pick-me" data-person="me">
+        <span class="avatar avatar-me" id="avatar-me-letter">A</span>
+        <span id="label-me">Me</span>
+      </button>
+      <button class="profile-btn her" id="pick-her" data-person="her">
+        <span class="avatar avatar-her" id="avatar-her-letter">H</span>
+        <span id="label-her">Her</span>
+      </button>
+    </div>
+
+    <div id="pin-area" class="hidden">
+      <p class="muted small">Enter PIN</p>
+      <input type="password" id="pin-input" inputmode="numeric" maxlength="4" pattern="[0-9]*" placeholder="****">
+      <button id="pin-continue" class="btn btn-primary">Continue</button>
+      <button id="use-email" class="btn btn-ghost">Use email instead</button>
+    </div>
+
+    <div id="email-area" class="hidden">
+      <input type="email" id="email-input" placeholder="you@example.com">
+      <input type="password" id="password-input" placeholder="password">
+      <button id="email-continue" class="btn btn-primary">Sign in</button>
+      <button id="email-signup" class="btn btn-ghost">Create account instead</button>
+      <button id="back-to-pin" class="btn btn-ghost">Back to PIN</button>
+    </div>
+
+    <p id="login-error" class="error hidden"></p>
+  </div>
+</section>
+
+<!-- MAIN SCREEN -->
+<section id="screen-main" class="screen">
+  <header class="topbar">
+    <span class="app-title">Our Days</span>
+    <nav class="tabbar">
+      <button class="tab-btn active" data-view="journal">Journal</button>
+      <button class="tab-btn" data-view="trivia">Trivia</button>
+      <button class="tab-btn" data-view="endless">Play</button>
+    </nav>
+    <button id="logout-btn" class="icon-btn" title="Log out">&#10162;</button>
+  </header>
+
+  <!-- JOURNAL VIEW -->
+  <div id="view-journal" class="view active">
+    <div class="split">
+      <div class="col col-me">
+        <div class="col-head">
+          <span class="avatar avatar-me small" id="col-me-letter">A</span>
+          <span class="col-name" id="col-me-name" contenteditable="false">Me</span>
+          <button class="edit-name-btn" data-target="me">&#9998;</button>
+        </div>
+        <div class="entries" id="entries-me"></div>
+      </div>
+      <div class="col col-her">
+        <div class="col-head">
+          <span class="avatar avatar-her small" id="col-her-letter">H</span>
+          <span class="col-name" id="col-her-name" contenteditable="false">Her</span>
+          <button class="edit-name-btn" data-target="her">&#9998;</button>
+        </div>
+        <div class="entries" id="entries-her"></div>
+      </div>
+    </div>
+    <button id="add-entry-btn" class="btn btn-fab">+ Add to my day</button>
+  </div>
+
+  <!-- TRIVIA VIEW -->
+  <div id="view-trivia" class="view">
+    <div class="card">
+      <h2>Trivia</h2>
+      <p class="muted small" id="trivia-score">You: 0 &nbsp;&middot;&nbsp; Them: 0</p>
+      <div id="trivia-question-area">
+        <p id="trivia-question">Set up your questions to start playing.</p>
+        <div id="trivia-options"></div>
+      </div>
+      <button id="manage-questions-btn" class="btn btn-ghost">Manage questions</button>
+    </div>
+  </div>
+
+  <!-- ENDLESS GAME VIEW -->
+  <div id="view-endless" class="view">
+    <div class="card">
+      <h2>Tap game</h2>
+      <p class="muted small">High score &mdash; you: <span id="endless-high-me">0</span> &nbsp;&middot;&nbsp; them: <span id="endless-high-her">0</span></p>
+      <div id="endless-arena">
+        <button id="endless-target" class="endless-target">Tap!</button>
+      </div>
+      <p id="endless-score">Score: 0</p>
+      <button id="endless-start" class="btn btn-primary">Start</button>
+    </div>
+  </div>
+</section>
+
+<!-- COMPOSER MODAL -->
+<div id="composer-modal" class="modal hidden">
+  <div class="modal-card">
+    <div class="modal-head">
+      <button id="composer-close" class="icon-btn">&times;</button>
+      <span>New entry</span>
+      <span style="width:24px"></span>
+    </div>
+    <textarea id="composer-text" placeholder="What happened today..."></textarea>
+    <div id="composer-photos" class="photo-row">
+      <label class="photo-add">
+        <input type="file" id="composer-photo-input" accept="image/*" multiple hidden>
+        &#128247;
+      </label>
+    </div>
+    <button id="composer-save" class="btn btn-primary">Save entry</button>
+  </div>
+</div>
+
+<!-- QUESTION MANAGER MODAL -->
+<div id="questions-modal" class="modal hidden">
+  <div class="modal-card">
+    <div class="modal-head">
+      <button id="questions-close" class="icon-btn">&times;</button>
+      <span>Trivia questions</span>
+      <span style="width:24px"></span>
+    </div>
+    <div id="questions-list"></div>
+    <input type="text" id="new-q-text" placeholder="Question, e.g. My favorite food?">
+    <input type="text" id="new-q-answer" placeholder="Correct answer">
+    <input type="text" id="new-q-wrong1" placeholder="Wrong option 1">
+    <input type="text" id="new-q-wrong2" placeholder="Wrong option 2">
+    <button id="add-question-btn" class="btn btn-primary">Add question</button>
+  </div>
+</div>
+
+<p id="sync-status" class="sync-status hidden">Waiting to sync...</p>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
