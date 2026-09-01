@@ -61,23 +61,32 @@
 
   <!-- JOURNAL VIEW -->
   <div id="view-journal" class="view active">
-    <div class="split">
-      <div class="col col-me">
-        <div class="col-head">
-          <span class="avatar avatar-me small" id="col-me-letter">A</span>
-          <span class="col-name" id="col-me-name" contenteditable="false">Me</span>
-          <button class="edit-name-btn" data-target="me">&#9998;</button>
-        </div>
-        <div class="entries" id="entries-me"></div>
+    <div class="journal-switch">
+      <button id="switch-to-me" class="switch-btn active" data-target="me">
+        <span class="avatar avatar-me small" id="avatar-me-letter-2">A</span>
+        <span id="switch-me-label">Me</span>
+      </button>
+      <button id="switch-to-her" class="switch-btn" data-target="her">
+        <span class="avatar avatar-her small" id="avatar-her-letter-2">H</span>
+        <span id="switch-her-label">Her</span>
+      </button>
+    </div>
+
+    <div class="col col-me col-page active" id="page-me">
+      <div class="col-head">
+        <span class="avatar avatar-me" id="col-me-letter">A</span>
+        <span class="col-name" id="col-me-name" contenteditable="false">Me</span>
+        <button class="edit-name-btn" data-target="me">&#9998;</button>
       </div>
-      <div class="col col-her">
-        <div class="col-head">
-          <span class="avatar avatar-her small" id="col-her-letter">H</span>
-          <span class="col-name" id="col-her-name" contenteditable="false">Her</span>
-          <button class="edit-name-btn" data-target="her">&#9998;</button>
-        </div>
-        <div class="entries" id="entries-her"></div>
+      <div class="entries" id="entries-me"></div>
+    </div>
+    <div class="col col-her col-page" id="page-her">
+      <div class="col-head">
+        <span class="avatar avatar-her" id="col-her-letter">H</span>
+        <span class="col-name" id="col-her-name" contenteditable="false">Her</span>
+        <button class="edit-name-btn" data-target="her">&#9998;</button>
       </div>
+      <div class="entries" id="entries-her"></div>
     </div>
     <button id="add-entry-btn" class="btn btn-fab">+ Add to my day</button>
   </div>
