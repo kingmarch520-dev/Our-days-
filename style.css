@@ -20,7 +20,8 @@ body{
 .screen.active{display:block;}
 
 /* LOGIN */
-#screen-login{display:flex; align-items:center; justify-content:center; min-height:100vh; padding:20px;}
+#screen-login{align-items:center; justify-content:center; min-height:100vh; padding:20px;}
+#screen-login.active{display:flex;}
 .login-card{background:var(--card-bg); border-radius:20px; padding:28px 22px; max-width:380px; width:100%; text-align:center; box-shadow:0 2px 12px rgba(0,0,0,0.06);}
 .login-icon{width:48px;height:48px;border-radius:50%;background:var(--lav-50);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;color:var(--lav-400);font-size:20px;}
 .login-card h1{font-size:18px; font-weight:600; margin:0 0 2px;}
