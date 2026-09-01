@@ -51,8 +51,12 @@ body{
 .view{display:none; padding:14px;}
 .view.active{display:block;}
 
-.split{display:flex; gap:10px;}
-.col{flex:1; border-radius:16px; padding:12px; min-height:300px;}
+.journal-switch{display:flex; gap:8px; margin-bottom:12px;}
+.switch-btn{flex:1; display:flex; align-items:center; justify-content:center; gap:6px; padding:8px; border-radius:20px; border:1px solid var(--border); background:var(--card-bg); font-size:13px; font-weight:600; color:var(--text-muted); cursor:pointer;}
+.switch-btn.active{background:var(--text); color:var(--warm-bg); border-color:var(--text);}
+.col-page{display:none;}
+.col-page.active{display:block;}
+.col{border-radius:16px; padding:12px; min-height:360px;}
 .col-me{background:#1C1C1E; border:1px solid #3A3A3C;}
 .col-her{background:linear-gradient(180deg, #2B1146 0%, #4B1E82 100%); box-shadow:0 0 18px rgba(151,71,255,0.45);}
 .col-head{display:flex; align-items:center; gap:6px; margin-bottom:10px;}
