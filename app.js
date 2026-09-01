@@ -150,6 +150,16 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
   };
 });
 
+// ---- JOURNAL PAGE SWITCH ----
+document.getElementById("switch-to-me").onclick = () => switchPage("me");
+document.getElementById("switch-to-her").onclick = () => switchPage("her");
+function switchPage(target) {
+  document.getElementById("switch-to-me").classList.toggle("active", target === "me");
+  document.getElementById("switch-to-her").classList.toggle("active", target === "her");
+  document.getElementById("page-me").classList.toggle("active", target === "me");
+  document.getElementById("page-her").classList.toggle("active", target === "her");
+}
+
 // ---- NAMES (either person can edit either name) ----
 document.querySelectorAll(".edit-name-btn").forEach(btn => {
   btn.onclick = () => {
@@ -228,6 +238,10 @@ function renderNames() {
   document.getElementById("avatar-her-letter").textContent = state.names.her[0] || "H";
   document.getElementById("col-me-letter").textContent = state.names.me[0] || "M";
   document.getElementById("col-her-letter").textContent = state.names.her[0] || "H";
+  document.getElementById("avatar-me-letter-2").textContent = state.names.me[0] || "M";
+  document.getElementById("avatar-her-letter-2").textContent = state.names.her[0] || "H";
+  document.getElementById("switch-me-label").textContent = state.names.me;
+  document.getElementById("switch-her-label").textContent = state.names.her;
 }
 function renderEntries() {
   const meCol = document.getElementById("entries-me");
